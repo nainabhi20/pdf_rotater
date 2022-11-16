@@ -45,7 +45,8 @@ def rotate_pdf(path , page_list) :
     for pagenum in range(pdf_reader.numPages):
         page = pdf_reader.getPage(pagenum)
         if str(pagenum) in page_list.keys() : 
-            page.rotateClockwise(page_list[str(pagenum)])
+            if page_list[str(pagenum)]%90 == 0 :
+                page.rotateClockwise(page_list[str(pagenum)])
         pdf_writer.addPage(page)
     print(pdf_in.name)
     in_name = Path(pdf_in.name).stem
